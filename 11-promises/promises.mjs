@@ -55,3 +55,79 @@ let run = async () => {
     let friend3 = await findUserInDB(friend2.friend)
     console.log(friend3)
 }
+
+
+function getNumber() {
+    //const promise = Promise.resolve(Math.random())
+    const promise = new Promise((resolve, reject)=> {
+        //reject('some error')
+        setTimeout(()=> {
+            resolve(Math.random())
+        }, 2000)
+    })
+    return promise
+}
+
+getNumber().then(n => console.log(n))
+
+
+const repo = {
+    save(data) {
+        try {
+            localStorage.setItem('some key', JSON.stringify(data))
+        } catch (error) {
+            return false
+        }
+        return true
+    },
+    saveAsync(data) {
+            const promise = new Promise((resolve, reject) => {
+                try {
+                    localStorage.setItem('some key', JSON.stringify(data))
+                    resolve(true)
+                } catch (error) {
+                    reject(error)
+                }
+            })
+        return promise
+    },
+    read() {
+        const data = localStorage.getItem('some key')
+        if (!data) {
+            return null
+        } else {
+            return JSON.parse(data)
+        }
+    },
+    readAsync() {
+         return new Promise((resolve, reject)=> {
+             const data = localStorage.getItem('some key')
+             if (!data) {
+                 resolve(null)
+             } else {
+                 resolve(data)
+             }
+        })
+    }
+}
+
+const result = repo.save({name: 'Dimych'})
+if (result) {
+    console.log('SAVED')
+} else {
+    console.warn('NOT SAVED')
+}
+const data = repo.read()
+console.log(data)
+
+
+repo.saveAsync({name: 'Dimych'})
+    .then(()=>console.log('SAVED'))
+    .catch((error)=>console.warn('NOT SAVED' + error))
+
+const run2 = async ()=> {
+    await repo.saveAsync({name: 'Dimych'})
+    console.log('SAVED')
+    const data = await repo.readAsync()
+    console.log(data)
+}

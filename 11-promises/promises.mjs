@@ -131,3 +131,30 @@ const run2 = async ()=> {
     const data = await repo.readAsync()
     console.log(data)
 }
+
+
+let count = 0
+const time = setTimeout(()=> {
+    console.log(count)
+    count++
+}, 1000)
+
+
+function wait(time) {
+    return new Promise((resolve)=> {
+        setTimeout(()=> {
+            resolve()
+        }, time)
+    })
+}
+
+const run3 = async ()=> {
+    await wait(1000)
+    console.log(1)
+    await wait(2000)
+    console.log(2)
+    await wait(3000)
+    console.log(3)
+}
+
+run3()

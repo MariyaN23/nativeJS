@@ -50,6 +50,60 @@
             })
         })
         .then((data)=> { return console.log(data)})
+
+    let fetch =(url)=> {
+        return new Promise((resolve, reject)=> {
+            switch (url) {
+                case 'google': {
+                    setTimeout(()=> {
+                        resolve({data: 'from google'})
+                    }, 3000)
+                    break;
+                }
+                case 'microsoft': {
+                    setTimeout(()=> {
+                        resolve({data: 'from microsoft'})
+                    }, 1000)
+                    break;
+                }
+                case 'it-kamasutra': {
+                    setTimeout(()=> {
+                        resolve({data: 'from it-kamasutra'})
+                    }, 500)
+                    break;
+                }
+                default: {
+                    setTimeout(()=> {
+                        resolve({data: 'from unknown server'})
+                    }, 5000)
+                    break;
+                }
+            }
+        })
+    }
+
+    /*fetch('google').then(data => console.log(data))
+    fetch('microsoft').then(data => console.log(data))
+    fetch('it-kamasutra').then(data => console.log(data))
+    fetch('yandex').then(data => console.log(data))*/
+
+    /*fetch('google')
+        .then(data => {
+            console.log(data)
+            fetch('microsoft').then(data => {
+                console.log(data)
+                fetch('it-kamasutra').then(data => console.log(data))
+            })
+        })*/
+
+    fetch('google')
+        .then(data => console.log(data))
+        .then (() => fetch('microsoft')
+            .then(data => console.log(data)))
+        .then (() =>fetch('it-kamasutra')
+            .then(data => console.log(data)))
+
+
 </script>
 </body>
 </html>

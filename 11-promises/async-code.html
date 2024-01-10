@@ -82,27 +82,57 @@
         })
     }
 
-    /*fetch('google').then(data => console.log(data))
+    fetch('google').then(data => console.log(data))
     fetch('microsoft').then(data => console.log(data))
     fetch('it-kamasutra').then(data => console.log(data))
-    fetch('yandex').then(data => console.log(data))*/
+    fetch('yandex').then(data => console.log(data))
 
-    /*fetch('google')
+    fetch('google')
         .then(data => {
             console.log(data)
             fetch('microsoft').then(data => {
                 console.log(data)
                 fetch('it-kamasutra').then(data => console.log(data))
             })
-        })*/
+        })
 
-    fetch('google')
-        .then(data => console.log(data))
-        .then (() => fetch('microsoft')
-            .then(data => console.log(data)))
-        .then (() =>fetch('it-kamasutra')
-            .then(data => console.log(data)))
+    Promise.all([fetch('google'), fetch('microsoft'), fetch('it-kamasutra')]).then(
+        (response)=>{
+            console.log(response[0])
+            console.log(response[1])
+            console.log(response[2])
+        }
+    )
 
+
+  const Promises = async ()=> {
+      let data = await fetch('google')
+      console.log(data)
+      data = await fetch('microsoft')
+      console.log(data)
+      data = await fetch('it-kamasutra')
+      console.log(data)
+  }
+  Promises()
+
+  fetch('google')
+      .then(data => {
+          console.log(data)
+          return fetch('microsoft')
+      })
+      .then(data => {
+          console.log(data)
+          return fetch('it-kamasutra')
+      })
+      .then(data => console.log(data))
+
+  const Promises2 = async ()=> {
+      let data = await Promise.all([fetch('google'), fetch('microsoft'), fetch('it-kamasutra')])
+      console.log(data[0])
+      console.log(data[1])
+      console.log(data[2])
+  }
+  Promises2()
 
 </script>
 </body>

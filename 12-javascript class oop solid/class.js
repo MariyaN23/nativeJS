@@ -47,5 +47,38 @@ console.log(u1.counter) //у каждого свой counter
 
 console.log(u1.name)
 
-u2.name="Igor" //setter
+//u2.name="Igor" //setter
 console.log(u2.name) //getter
+
+
+class Coder extends User {
+    constructor(name, site, dob, tech) {
+        super(name, site, dob);
+        this.tech = tech
+    }
+    code() {
+        console.log(`I am ${this.name}, here is my ${this.tech} code: System.Console.WriteLine("Hello World!")`)
+    }
+    hello() {
+        super.hello();
+        console.log("Go away")
+    }
+}
+
+const u3 = new Coder('Svetlana', 'it-incubator', new Date(2001, 1, 2), 'C#')
+u3.code()
+u3.hello()
+
+class Hacker extends Coder {
+    constructor() {
+        super();
+        this.tech = 'XXX'
+    }
+    code() {
+        console.log("I am hacker")
+    }
+}
+
+const u4 = new Hacker()
+u4.code()
+u4.hello()

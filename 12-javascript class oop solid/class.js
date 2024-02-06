@@ -82,3 +82,7 @@ class Hacker extends Coder {
 const u4 = new Hacker()
 u4.code()
 u4.hello()
+console.log('-------------')
+
+let users = [u1, u2, u3, u4]
+users.forEach(el => el.hello())

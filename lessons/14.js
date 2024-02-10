@@ -165,3 +165,54 @@ car.showMaxSpeed2() //global - undefined, window - 100
 car.showMaxSpeed2.call(ferrari)*/
 
 //4. Function constructor
+/*
+function Car(maxSpeed, color = 'gold') {
+    //this - новый {}
+    this.maxSpeed = maxSpeed // {maxSpeed: 200}
+    this.color = color // {maxSpeed: 200, color: 'red'}
+    //return {maxSpeed: 200, color: 'red'}
+}
+const car1 = new Car(200, 'red')
+const car2 = new Car(220)
+console.log(car1)
+console.log(car2)*/
+
+//Потеря контекста
+/*const car = {
+    maxSpeed: 300,
+    showMaxSpeed() {
+        console.log(this.maxSpeed)
+    }
+}
+setTimeout(car.showMaxSpeed, 1000) //undefined
+
+setTimeout(()=> car.showMaxSpeed(), 1000)
+setTimeout(car.showMaxSpeed.bind(car), 1000)*/
+
+
+function foo() {
+    const x = 10
+    return {
+        x: 20,
+        bar: ()=> {
+            console.log(this.x)
+        },
+        baz: function () {
+            console.log(this.x)
+        }
+    }
+}
+
+/*const obj1 = foo()
+obj1.bar() //undefined
+obj1.baz() //20*/
+
+const obj2 = foo.call({x: 30})
+/*
+obj2.bar() //30
+obj2.baz() //20*/
+
+let r = obj2.bar
+let z = obj2.baz
+r() // 30
+z() // undefined

@@ -3,31 +3,31 @@
 // "use strict" - undefined, {}, null, [], string
 
 //1. Global scope
-//console.log(this)
+console.log(this)
 
 //2. Function: f, arrow
 
-/*const foo = ()=> {
+const foo = ()=> {
     console.log(this)
 }
-foo() // из global*/
+foo() // из global
 
-/*function bar() {
+function bar() {
     const foo = ()=> {
         console.log(this)
     }
     foo()
 }
-bar() //window*/
+bar() //window
 
-/*const car = {
+const car = {
     foo: ()=> {
         console.log(this) //global
     }
 }
-car.foo()*/
+car.foo()
 
-/*function foo1 () {
+function foo1 () {
     console.log(this)
 }
 foo1() // window
@@ -36,9 +36,9 @@ foo1() // window
 function foo2 () {
     console.log(this)
 }
-foo2() //undefined*/
+foo2() //undefined
 
-/*const car2 = {
+const car2 = {
     foo() {
         console.log(this)
     },
@@ -60,14 +60,14 @@ foo2() //undefined*/
             console.log(this)
         })()
     }
-}*/
-/*car2.foo() //car2
+}
+car2.foo() //car2
 car2.foo2() //car2
 car2.foo3() //window
-car2.foo4() //car2, car2*/
-//car2.foo5() //window, window
+car2.foo4() //car2, car2
+car2.foo5() //window, window
 
-/*const car3 = {
+const car3 = {
     maxSpeed: 200,
     showMaxSpeed(){
         console.log(this.maxSpeed)
@@ -77,9 +77,9 @@ car2.foo4() //car2, car2*/
     }
 }
 car3.showMaxSpeed() //200
-car3.showMaxSpeed1() //undefined*/
+car3.showMaxSpeed1() //undefined
 
-/*let car4 = {
+let car4 = {
     maxSpeed: 200,
     showMaxSpeed(){
         console.log(this.maxSpeed)
@@ -87,9 +87,9 @@ car3.showMaxSpeed1() //undefined*/
 }
 let car5 = car4
 car4 = null
-car5.showMaxSpeed() //this - 200*/
+car5.showMaxSpeed() //this - 200
 
-/*const car6 = {
+const car6 = {
     maxSpeed: 200
 }
 const car7 = {
@@ -101,10 +101,10 @@ function carSpeed() {
 car6.showMaxSpeed = carSpeed
 car7.showMaxSpeed = carSpeed
 car6.showMaxSpeed() //200
-car7.showMaxSpeed() //300*/
+car7.showMaxSpeed() //300
 
 //3. call, apply, bind
-/*const scooter = {
+const scooter = {
     maxSpeed: 20
 }
 
@@ -131,9 +131,9 @@ const car2 = {
         console.log(c, d)
     }
 }
-car2.showMaxSpeed.bind(scooter2, 10, 20)(30, 40)*/
+car2.showMaxSpeed.bind(scooter2, 10, 20)(30, 40)
 
-/*const scooter = {
+const scooter = {
     maxSpeed: 20
 }
 const bus = {
@@ -145,9 +145,9 @@ const car = {
         console.log(this.maxSpeed)
     }
 }
-car.showMaxSpeed.bind(scooter).call(bus)*/
+car.showMaxSpeed.bind(scooter).call(bus)
 
-/*const ferrari = {
+const ferrari = {
     maxSpeed: 333
 }
 
@@ -162,10 +162,9 @@ const car = {
     }
 }
 car.showMaxSpeed2() //global - undefined, window - 100
-car.showMaxSpeed2.call(ferrari)*/
+car.showMaxSpeed2.call(ferrari)
 
 //4. Function constructor
-/*
 function Car(maxSpeed, color = 'gold') {
     //this - новый {}
     this.maxSpeed = maxSpeed // {maxSpeed: 200}
@@ -175,10 +174,10 @@ function Car(maxSpeed, color = 'gold') {
 const car1 = new Car(200, 'red')
 const car2 = new Car(220)
 console.log(car1)
-console.log(car2)*/
+console.log(car2)
 
 //Потеря контекста
-/*const car = {
+const car = {
     maxSpeed: 300,
     showMaxSpeed() {
         console.log(this.maxSpeed)
@@ -187,7 +186,7 @@ console.log(car2)*/
 setTimeout(car.showMaxSpeed, 1000) //undefined
 
 setTimeout(()=> car.showMaxSpeed(), 1000)
-setTimeout(car.showMaxSpeed.bind(car), 1000)*/
+setTimeout(car.showMaxSpeed.bind(car), 1000)
 
 
 function foo() {
@@ -203,14 +202,13 @@ function foo() {
     }
 }
 
-/*const obj1 = foo()
+const obj1 = foo()
 obj1.bar() //undefined
-obj1.baz() //20*/
+obj1.baz() //20
 
 const obj2 = foo.call({x: 30})
-/*
 obj2.bar() //30
-obj2.baz() //20*/
+obj2.baz() //20
 
 let r = obj2.bar
 let z = obj2.baz

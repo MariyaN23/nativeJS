@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class GODListener {
+        constructor() {
+            this.counter = 0
+        }
+        handleClick(){
+            this.counter += 1
+            console.log(this.counter)
+        }
+    }
+
+    const element = document.getElementById('testBtn')
+    const listener = new GODListener()
+    //element.addEventListener('click', listener.handleClick)
+</script>
+<button id="testBtn" onclick=listener.handleClick()>ryjgrf</button>
+</body>
+</html>

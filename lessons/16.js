@@ -1,5 +1,5 @@
 //__proto__, prototype
-/*const pr = new Promise (()=> {})
+const pr = new Promise (()=> {})
 console.log(pr)
 
 class Car {
@@ -29,7 +29,6 @@ car1.__proto__ = {}*/
 //car1.startEngine() //не получится
 //car1.showMaxSpeed() //получится стрелочная функция
 
-/*
 const a = new Array(1, 2)
 console.log(a.__proto__ === Array.prototype) //true
 
@@ -43,7 +42,7 @@ const str = 'str'
 console.log(str.__proto__ === String.prototype) //true
 
 const boo = true
-console.log(boo.__proto__ === Boolean.prototype) //true*/
+console.log(boo.__proto__ === Boolean.prototype) //true
 
 class Car {
     constructor(model, maxSpeed) {
@@ -68,10 +67,32 @@ function CarFoo(model, maxSpeed) {
 }
 
 const carFoo1 = new CarFoo('tesla', 8940)
-CarFoo.prototype.startEngine= function (){
+CarFoo.prototype.startEngine = function (){
     console.log(`Start ${this.model}`)
 }
 carFoo1.startEngine()
+CarFoo.compareCars = function () {
+    console.log('compare')
+}
 
+/*
 Function.prototype = {}
-console.log(Function)
+console.log(Function)*/
+
+function SuperCarFoo(model, maxSpeed, canFly) {
+    this.model = model
+    this.maxSpeed = maxSpeed
+    this.canFly = canFly
+}
+
+const superCarFoo1 = new SuperCarFoo('kia', 200, true)
+//обычный метод
+SuperCarFoo.prototype.__proto__ = CarFoo.prototype
+superCarFoo1.startEngine()
+
+//статический метод
+SuperCarFoo.__proto__ = CarFoo
+CarFoo.compareCars()
+SuperCarFoo.compareCars()
+
+console.log(Function.__proto__ === Function.prototype)
